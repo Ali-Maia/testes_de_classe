@@ -1,42 +1,48 @@
-# Trabalho Classes — Serviço de Pagamento
+# Trabalho — Serviço de Pagamento (JavaScript)
 
-Projeto simples em JavaScript que simula um serviço de pagamentos usando classes.
+Implementação simples de um serviço de pagamentos em JavaScript usando classes.
 
-## Funcionalidades
+## Resumo
 
-- Registrar pagamentos com:
-  - `pagador`
-  - `beneficiario`
-  - `valorPagamento`
-  - `categoria` (`padrão` ou `cara`)
-- Classificar pagamento como:
-  - `padrão` para valores até 100
-  - `cara` para valores acima de 100
-- Validar erros quando:
-  - valor não é informado ou é menor/igual a zero
-  - pagador não é informado
-  - beneficiário não é informado
+- Classe: `ServicoDePagamento` (em `src/ServicoDePagamento.js`).
+- Métodos:
+  - `pagar(codigoBarras, empresa, valor)`: registra um pagamento.
+  - `consultarUltimoPagamento()`: retorna apenas o último pagamento cadastrado.
+- Cada pagamento é um objeto com as propriedades: `codigoBarras`, `empresa`, `valor` e `categoria`.
+- Regra de categoria: `valor > 100.00` → `categoria: 'cara'`; caso contrário `categoria: 'padrão'`.
 
-## Estrutura
+## Exemplo de uso
 
-- `src/ServicoDePagamento.js`: classe principal.
-- `test/ServicoDePagamento.test.js`: testes automatizados com Mocha.
-- `mochawesome-report/`: relatório HTML dos testes.
+```javascript
+import ServicoDePagamento from './src/ServicoDePagamento.js';
 
-## Como executar
+const servico = new ServicoDePagamento();
+servico.pagar('0987-7656-3475', 'Samar', 156.87);
+console.log(servico.consultarUltimoPagamento());
+/* saída esperada:
+{
+  codigoBarras: '0987-7656-3475',
+  empresa: 'Samar',
+  valor: 156.87,
+  categoria: 'cara'
+}
+*/
+```
 
-1. Instale as dependências:
+## Testes
+
+- Testes em `test/ServicoDePagamento.test.js` usando Mocha e `node:assert`.
+- Para executar os testes e gerar o relatório mochawesome:
 
 ```bash
 npm install
-```
-
-2. Rode os testes:
-
-```bash
 npm test
 ```
 
-3. Abra o relatório em:
+- Relatório HTML: `mochawesome-report/mochawesome.html`
 
-- `mochawesome-report/mochawesome.html`
+## Observações
+
+- O código valida alguns formatos (ex.: formato do código de barras) e os campos obrigatórios.
+- Para dúvidas ou ajustes, altere os arquivos em `src/` e `test/` e rode os testes novamente.
+
