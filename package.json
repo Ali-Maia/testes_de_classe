@@ -1,0 +1,16 @@
+{
+  "name": "3---trabalho_classes",
+  "version": "1.0.0",
+  "description": "Trabalho de conclusão de disciplina sobre sistema de pagamentos usando classes",
+  "license": "ISC",
+  "author": "Alícia Maia",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha \"test/**.test.js\" --reporter mochawesome"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.5",
+    "mochawesome": "^7.1.4"
+  }
+}
