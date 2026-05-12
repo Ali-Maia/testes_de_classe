@@ -5,18 +5,24 @@ export default class ServicoDePagamento{
     this.#pagamentos= [];
   };
 
-  realizarPagamento(pagante, beneficiario, valor){
+  pagar(codigoDeBarras, empresa, valor){
     let categoria = 'padrão';
+    const codigoDeBarrasRegex = /^\d{4}-\d{4}-\d{4}$/;
+
     if(valor <= 0 || valor == null){
       throw new Error('O valor do pagamento deve ser maior que zero');
     }
 
-    if(pagante == '' || pagante == null){
-      throw new Error('Deve ser informado um pagador');
+    if(codigoDeBarras == '' || codigoDeBarras == null){
+      throw new Error('Deve ser informado um Código de Barras');
     }
 
-    if(beneficiario == '' || beneficiario == null){
-      throw new Error('Deve ser informado um beneficiário');
+    if(codigoDeBarrasRegex.test(codigoDeBarras) == false){
+      throw new Error('Formato do Código de Barras Inválido');
+    }
+
+    if(empresa == '' || empresa == null){
+      throw new Error('Deve ser informado uma Empresa');
     }
 
     if(valor > 100.00){
@@ -24,9 +30,9 @@ export default class ServicoDePagamento{
     }
 
     this.#pagamentos.push({
-      pagador: pagante, 
-      beneficiario: beneficiario, 
-      valorPagamento: valor,
+      codigoBarras: codigoDeBarras, 
+      empresa: empresa, 
+      valor: valor,
       categoria: categoria
     });
   };
