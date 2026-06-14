@@ -46,7 +46,7 @@ npm test
 Este projeto utiliza o **GitHub Actions** para automatizar a execução dos testes e garantir a qualidade do código. O arquivo de configuração pode ser encontrado em `.github/workflows/testes-unidade.yaml`.
 
 A pipeline contempla os seguintes processos:
-- **Gatilhos (Triggers):** A automação é executada automaticamente a cada envio de código (`push`), de forma manual (`workflow_dispatch`) e através de um agendamento (`schedule`) configurado para rodar a cada 10 minutos.
+- **Gatilhos (Triggers):** A automação é executada automaticamente a cada envio de código (`push`), de forma manual (`workflow_dispatch`) e através de um agendamento (`schedule`) configurado para rodar **toda sexta-feira às 18h (Horário de Brasília / 21h UTC)**.
 - **Ambiente:** Os testes rodam em uma máquina virtual `ubuntu-latest` utilizando o Node.js.
 - **Relatório de Testes:** O workflow instala as dependências, executa os testes de unidade e gera dinamicamente os resultados via Mochawesome.
 - **Armazenamento de Artefato:** O relatório gerado não é versionado no código, mas salvo e publicado como um **Artefato** temporário na própria plataforma do GitHub.
